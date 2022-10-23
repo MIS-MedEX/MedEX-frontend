@@ -1,5 +1,6 @@
 import * as React from "react";
-import Home from "./pages/Home/Home";
+import PatientsList from "./pages/PatientsList";
+// import Home from "./pages/Home";
 import { Navigator } from './pages/navigator';
 
 export default function App() {
@@ -7,7 +8,3 @@ export default function App() {
     <Navigator/>
   );
 }
-
-// export const App = () => (
-// 	<Navigator/>
-// );
