@@ -58,3 +58,6 @@ export default function PatientsList() {
 		</div>
 	);
 }
+
+
+export const Home_Page = (PatientsList)
