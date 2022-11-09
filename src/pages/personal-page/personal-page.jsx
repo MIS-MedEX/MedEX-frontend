@@ -31,11 +31,7 @@ export default function PersonalPage() {
                 <Stack spacing={2}>
                 <ToolBar/>
                 <Grid container>
-                  <Grid item xs={2}>
-                    <ImageCard/>
-                  </Grid>
-                  <Grid item xs={7}>
-
+                  <Grid item xs={9}>
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>
