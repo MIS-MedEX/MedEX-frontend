@@ -18,7 +18,7 @@ export default function PatientsList() {
 	const [selectedID, setSelectedID] = React.useState([]);
 
 	React.useEffect(() => {
-		axios.get('http://140.114.77.34:5000/api/get_patient_list')
+		axios.get('http://140.114.77.34:5000/api/patient')
 			.then(res => {
 				setRow(res.data)
 			})
