@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
@@ -16,6 +16,14 @@ export default function PersonalPage() {
     const handleClick = () => {
       setOpen(!open);
     };
+
+
+    // const [item, setItems] = useState([]);
+    // useEffect(() => {
+    //   const items = JSON.parse(localStorage.getItem('patient'));
+    //   console.log(items);
+    // })
+
   
     return (
 
@@ -31,13 +39,10 @@ export default function PersonalPage() {
                 <Stack spacing={2}>
                 <ToolBar/>
                 <Grid container>
-                  <Grid item xs={2}>
-                    <ImageCard/>
-                  </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
 
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={4}>
                     <ReportAIResult/>
                   </Grid>
                 </Grid>
@@ -46,6 +51,7 @@ export default function PersonalPage() {
             </Grid>
           </Stack>
         </Box>
+
         {/* <TopBar/>
         <Container fixed>
           <DataList/>

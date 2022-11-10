@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -18,10 +18,29 @@ import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import TuneIcon from '@mui/icons-material/Tune';
 
 export default function NestedList_Data(){
-  const [open, setOpen] = React.useState(true);
-  const [open2, setOpen2] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [open2, setOpen2] = useState(true);
   const handleClick = () => { setOpen(!open); };
   const handleClick2 = () => { setOpen2(!open2); };
+
+
+  var dateDict = [];
+
+
+  const [date, setDate] = useState([]);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('patient'));
+    setDate(items.date);
+    console.log(items.date);
+
+    // for(let i = 0; i < date.length ; i++)
+    // {
+    //   var _str = date[i].split(' ');
+      
+    //   console.log(_str);
+    // }
+
+  }, [])
 
   return(
     <List

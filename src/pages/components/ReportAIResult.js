@@ -49,7 +49,7 @@ export default function ReportAIResult() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
           <Tab label="Report" {...a11yProps(0)} />
           <Tab label="AI Results" {...a11yProps(1)} />
         </Tabs>
