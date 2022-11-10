@@ -6,7 +6,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AIResult from './AIResult';
-import MoreResult from "./MoreResult";	
+import MoreResult from "./MoreResult";
+import Report from './Report';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +59,9 @@ export default function ReportAIResult() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <Box>
+          <Report />
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
 				<Box>
