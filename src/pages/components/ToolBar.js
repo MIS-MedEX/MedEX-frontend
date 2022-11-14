@@ -28,16 +28,16 @@ export default function ToolBar() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('patient'));
-    console.log(items);
-    setName(items.name);
-    setAge(items.age);
-    setSex(items.sex)
+  // useEffect(() => {
+  //   const items = JSON.parse(localStorage.getItem('patient'));
+  //   console.log(items);
+  //   setName(items.name);
+  //   setAge(items.age);
+  //   setSex(items.sex)
 
-    // console.log(item.sex);
-    // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
-  })
+  //   // console.log(item.sex);
+  //   // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
+  // })
 
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>

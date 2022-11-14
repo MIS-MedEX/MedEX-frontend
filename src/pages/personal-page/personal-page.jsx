@@ -9,6 +9,7 @@ import DataList from '../components/NestedList_Data';
 import ToolBar from '../components/ToolBar';
 import ReportAIResult from '../components/ReportAIResult';
 import ImageCard from '../components/ImageCard';
+import Canvas from '../components/Canvas';
 
 export default function PersonalPage() {
     const [open, setOpen] = React.useState(true);
@@ -40,6 +41,7 @@ export default function PersonalPage() {
                 <ToolBar/>
                 <Grid container>
                   <Grid item xs={9}>
+                    <Canvas/>
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>

@@ -28,19 +28,19 @@ export default function NestedList_Data(){
 
 
   const [date, setDate] = useState([]);
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('patient'));
-    setDate(items.date);
-    console.log(items.date);
+  // useEffect(() => {
+  //   const items = JSON.parse(localStorage.getItem('patient'));
+  //   setDate(items.date);
+  //   console.log(items.date);
 
-    // for(let i = 0; i < date.length ; i++)
-    // {
-    //   var _str = date[i].split(' ');
+  //   // for(let i = 0; i < date.length ; i++)
+  //   // {
+  //   //   var _str = date[i].split(' ');
       
-    //   console.log(_str);
-    // }
+  //   //   console.log(_str);
+  //   // }
 
-  }, [])
+  // }, [])
 
   return(
     <List
