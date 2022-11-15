@@ -14,10 +14,12 @@ import Canvas from '../components/Canvas';
 export default function PersonalPage() {
     const [open, setOpen] = React.useState(true);
     const [disabled, setDisabled] = React.useState(false);
+    const [color, setColor] = React.useState('inherit');
   
     const handleClick = () => {
       setOpen(!open);
       setDisabled(!disabled);
+      setColor(color === 'inherit' ? 'primary' : 'inherit');
     };
 
 
@@ -41,7 +43,7 @@ export default function PersonalPage() {
               </Grid>
               <Grid item xs={10}>
                 <Stack spacing={2}>
-                <ToolBar ClickOpen={handleClick}/>
+                <ToolBar ClickOpen={handleClick} color={color}/>
                 <Grid container>
                   <Grid item xs={9}>
                     <Canvas open={open}/>

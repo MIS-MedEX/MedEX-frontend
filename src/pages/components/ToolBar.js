@@ -54,7 +54,7 @@ export default function ToolBar(props) {
           <IconButton>
             <PanToolAltIcon/>
           </IconButton>
-          <IconButton>
+          <IconButton color={props.color}>
             <CreateIcon onClick={props.ClickOpen}/>
           </IconButton>
           <IconButton>
