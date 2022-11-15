@@ -23,7 +23,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function ToolBar() {
+export default function ToolBar(props) {
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -38,6 +38,7 @@ export default function ToolBar() {
   //   // console.log(item.sex);
   //   // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
   // })
+  
 
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
@@ -54,7 +55,7 @@ export default function ToolBar() {
             <PanToolAltIcon/>
           </IconButton>
           <IconButton>
-            <CreateIcon/>
+            <CreateIcon onClick={props.ClickOpen}/>
           </IconButton>
           <IconButton>
             <AutoFixNormalIcon/>

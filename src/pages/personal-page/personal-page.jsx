@@ -13,9 +13,11 @@ import Canvas from '../components/Canvas';
 
 export default function PersonalPage() {
     const [open, setOpen] = React.useState(true);
+    const [disabled, setDisabled] = React.useState(false);
   
     const handleClick = () => {
       setOpen(!open);
+      setDisabled(!disabled);
     };
 
 
@@ -24,6 +26,7 @@ export default function PersonalPage() {
     //   const items = JSON.parse(localStorage.getItem('patient'));
     //   console.log(items);
     // })
+
 
   
     return (
@@ -38,10 +41,10 @@ export default function PersonalPage() {
               </Grid>
               <Grid item xs={10}>
                 <Stack spacing={2}>
-                <ToolBar/>
+                <ToolBar ClickOpen={handleClick}/>
                 <Grid container>
                   <Grid item xs={9}>
-                    <Canvas/>
+                    <Canvas open={open}/>
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>
