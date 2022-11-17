@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
@@ -10,11 +10,13 @@ import ToolBar from '../components/ToolBar';
 import ReportAIResult from '../components/ReportAIResult';
 import ImageCard from '../components/ImageCard';
 import Canvas from '../components/Canvas';
+import { SettingsOverscanRounded } from '@material-ui/icons';
 
 export default function PersonalPage() {
     const [open, setOpen] = React.useState(true);
     const [disabled, setDisabled] = React.useState(false);
     const [color, setColor] = React.useState('inherit');
+    const [erase, setErase] = React.useState(0);
   
     const handleClick = () => {
       setOpen(!open);
@@ -22,6 +24,13 @@ export default function PersonalPage() {
       setColor(color === 'inherit' ? 'primary' : 'inherit');
     };
 
+    const handleErase = ()  => { 
+      setErase(()=>erase+1);
+    }
+    // const handleEraseEnd = () => {
+    //   console.log("Erase End");
+    //   setErase(false);
+    // }
 
     // const [item, setItems] = useState([]);
     // useEffect(() => {
@@ -32,7 +41,6 @@ export default function PersonalPage() {
 
   
     return (
-
       <React.Fragment>
         <Box sx={{ width: '100%' }}>
           <Stack spacing={2}>
@@ -43,10 +51,10 @@ export default function PersonalPage() {
               </Grid>
               <Grid item xs={10}>
                 <Stack spacing={2}>
-                <ToolBar ClickOpen={handleClick} color={color}/>
+                <ToolBar ClickOpen={handleClick} color={color} ClickErase={handleErase}/>
                 <Grid container>
                   <Grid item xs={9}>
-                    <Canvas open={open}/>
+                    <Canvas open={open} erase={erase}/>
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>

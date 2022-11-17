@@ -8,14 +8,15 @@ class Canvas extends Component{
     constructor(props){
         super(props);
     }
+
+
     
     render(){
+        if(this.props.erase){
+            this.saveableCanvas.eraseAll();
+        }
         return(
             <div>
-                <button onClick={() => {
-                    this.saveableCanvas.eraseAll();}}>
-                    Erase
-                </button>
                 <CanvasDraw
                     ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
                     canvasWidth={1000}
@@ -26,7 +27,7 @@ class Canvas extends Component{
                     catenaryColor={"#FFFF00"}
                     imgSrc={Test}
                     hideGridX={true}
-                    enablePanAndZoom={true}
+                    enablePanAndZoom={false}
                 />
             </div>
         )

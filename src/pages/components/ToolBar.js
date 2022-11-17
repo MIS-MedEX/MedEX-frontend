@@ -51,16 +51,16 @@ export default function ToolBar(props) {
             {name} ({age}Y / {sex})
           </Typography>
 
-          <IconButton>
+          {/* <IconButton>
             <PanToolAltIcon/>
-          </IconButton>
+          </IconButton> */}
           <IconButton color={props.color}>
             <CreateIcon onClick={props.ClickOpen}/>
           </IconButton>
           <IconButton>
-            <AutoFixNormalIcon/>
+            <AutoFixNormalIcon onClick={props.ClickErase}/>
           </IconButton>
-          <IconButton>
+          {/* <IconButton>
             <ZoomInIcon/>
           </IconButton>
           <IconButton>
@@ -68,7 +68,7 @@ export default function ToolBar(props) {
           </IconButton>
           <IconButton>
             <LightModeIcon/>
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
         </AppBar>
       </ThemeProvider>
