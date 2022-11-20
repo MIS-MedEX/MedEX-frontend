@@ -19,8 +19,8 @@ class Canvas extends Component{
             <div>
                 <CanvasDraw
                     ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-                    canvasWidth={1000}
-                    canvasHeight={500}
+                    canvasWidth={800}
+                    canvasHeight={400}
                     brushRadius={1}
                     disabled={this.props.open}
                     brushColor={"#FFFF00"}

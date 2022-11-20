@@ -8,8 +8,10 @@ import {
   Tooltip,
   Legend
 } from "recharts";
+import axios from 'axios'
 
-const response = {
+
+const example = {
     "img_label": "str",
     "img_org_path": "str",
     "res_our_cardio":{
@@ -48,9 +50,24 @@ function parseResponse(response) {
   return data;
 }
 
-let data = parseResponse(response);
+let id = localStorage.getItem('id')
 
 export default function AIResult() {
+
+  const [response, setResponse] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get('http://140.114.77.34:5000/api/patient/' + id + '/image')
+    .then(res => {
+      setResponse(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+	}, [])
+  
+  let data = parseResponse(example);
+  
   return (
     <BarChart
       width={300}
