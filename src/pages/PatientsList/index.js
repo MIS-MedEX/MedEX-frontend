@@ -51,7 +51,7 @@ export default function PatientsList() {
 					endIcon={<SendIcon />}
 					href="/personal"
 					onClick={() => {
-						axios.get('http://140.114.77.34:5000/api/get_patient?id=' + selectedID)
+						axios.get('http://140.114.77.34:5000/api/patient/' + selectedID)
 							.then(res => {
 								localStorage.setItem('patient', JSON.stringify(res.data))
 							})

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 import TopBar from "../components/TopBar";
 import DataList from '../components/NestedList_Data';
@@ -17,6 +18,8 @@ export default function PersonalPage() {
     const [disabled, setDisabled] = React.useState(false);
     const [color, setColor] = React.useState('inherit');
     const [erase, setErase] = React.useState(0);
+    const [response, setResponse] = React.useState([]);
+
   
     const handleClick = () => {
       setOpen(!open);
@@ -37,9 +40,26 @@ export default function PersonalPage() {
     //   const items = JSON.parse(localStorage.getItem('patient'));
     //   console.log(items);
     // })
-
-
-  
+    
+    // let id = localStorage.getItem('id');  
+    let id = 2;
+    let date = "2020-08-11";
+    let type = "Xray-14:30:25";
+    // let id = 1
+    // let date = "2018-09-18";
+    // let type = "Xray-11:13:24";
+    useEffect(() => {
+      axios.get('http://140.114.77.34:5000/api/patient/' + id + '/image?date=' + date + '&type=' + type)
+      .then(res => {
+        setResponse(res.data)
+        console.log(res.data);
+        localStorage.setItem('response', JSON.stringify(res.data));
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }, [])
+    
     return (
       <React.Fragment>
         <Box sx={{ width: '100%' }}>
@@ -65,11 +85,6 @@ export default function PersonalPage() {
             </Grid>
           </Stack>
         </Box>
-
-        {/* <TopBar/>
-        <Container fixed>
-          <DataList/>
-        </Container> */}
       </React.Fragment>
     );
   }
