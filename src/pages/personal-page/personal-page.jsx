@@ -77,13 +77,13 @@ export default function PersonalPage() {
                 <ToolBar ClickOpen={handleClick} color={color} ClickErase={handleErase}/>
                 <Grid container>
                   <Grid item xs={9}>
-                  <React.StrictMode>
+                  {/* <React.StrictMode>
                     <CanvasProvider>
                       <ClearCanvasButton />
                       <ZoomInButton />
                       <Canvas />
                     </CanvasProvider>
-                  </React.StrictMode>
+                  </React.StrictMode> */}
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>

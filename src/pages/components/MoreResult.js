@@ -6,7 +6,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  Label,
+  Cell
 } from "recharts";
 
 // const example = {
@@ -48,6 +50,15 @@ function parseResponse(response) {
       let name = key.split("_")[2];
       let ours = response[key].error;
       let baseline = response["res_baseline_" + name].error;
+      if (name === "cardio") {
+        name = "Cardiomegaly";
+      }
+      if (name === "pneumo") {
+        name = "Pneumonia";
+      }
+      if (name === "pleural") {
+        name = "Pleural Effusion";
+      }
       data.push({name, ours, baseline});
     }
   }
@@ -68,17 +79,27 @@ export default function MoreResult() {
       margin={{
         top: 5,
         right: 30,
-        left: -20,
-        bottom: 5
+        left: 20,
+        bottom: 20
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis height={80} dataKey="name" label="Disease Type" />
-      <YAxis width={150} label="Error"/>
+      <XAxis dataKey="name">
+        <Label value="Type of Disease" offset={0} position="bottom" />
+      </XAxis>
+      <YAxis label={{ value: 'Error', angle: -90, position: 'insideLeft' }}/>
       <Tooltip />
       <Legend align="right" verticalAlign="top"/>
-      <Bar dataKey="ours" fill="#8884d8" label={{ fontSize: 15, position: "top" }} />
-      <Bar dataKey="baseline" fill="#82ca9d" label={{ fontSize: 15, position: "top" }} />
+      <Bar dataKey="ours" fill="#8884d8" label={{ fontSize: 15, position: "top" }} >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.name === res.img_label ? "#8884d8" : "#ededed"} />
+        ))}
+      </Bar>
+      <Bar dataKey="baseline" fill="#82ca9d" label={{ fontSize: 15, position: "top" }} >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.name === res.img_label ? "#82ca9d" : "#ededed"} />
+        ))}
+      </Bar>
     </BarChart>
   );
 }

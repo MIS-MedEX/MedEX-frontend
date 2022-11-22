@@ -43,7 +43,7 @@ function a11yProps(index) {
 
 
 export default function ReportAIResult() {
-  //let res = JSON.parse(localStorage.getItem('response'))
+  let res = JSON.parse(localStorage.getItem('response'))
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -68,7 +68,7 @@ export default function ReportAIResult() {
 				<Box>
 					<MoreResult />
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'right' }}>
-						Ground Truth: {"None"}
+						Ground Truth: {res.img_label}
 					</Typography>
 				</Box>
       </TabPanel>

@@ -6,7 +6,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  Label
 } from "recharts";
 
 // const example = {
@@ -42,6 +43,15 @@ function parseResponse(response) {
       let name = key.split("_")[2];
       let probability = response[key].prob;
       let base = response["res_baseline_" + name].prob;
+      if (name === "cardio") {
+        name = "Cardiomegaly";
+      }
+      if (name === "pneumo") {
+        name = "Pneumonia";
+      }
+      if (name === "pleural") {
+        name = "Pleural Effusion";
+      }
       data.push({name, probability, base});
     }
   }
@@ -62,16 +72,17 @@ export default function AIResult() {
       margin={{
         top: 5,
         right: 30,
-        left: -20,
-        bottom: 5
+        left: 20,
+        bottom: 20
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis height={80} dataKey="name" label="Disease Type" />
-      <YAxis width={150} label="Probability"/>
+      <XAxis dataKey="name">
+        <Label value="Type of Disease" offset={0} position="bottom" />
+      </XAxis>
+      <YAxis label={{ value: 'Probability', angle: -90, position: 'insideLeft' }}/>
       <Tooltip />
-      <Legend align="right" verticalAlign="top"/>
-      <Bar dataKey="probability" fill="#8884d8" label={{ fontSize: 15, position: "top" }} />
+      <Bar barSize={50} dataKey="probability" fill="#8884d8" label={{ fontSize: 15, position: "top", fill: "#8884d8" }} />
     </BarChart>
   );
 }
