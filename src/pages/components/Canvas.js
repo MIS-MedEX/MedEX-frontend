@@ -6,10 +6,39 @@ import Test3 from "C:/medex-backend/db/imgs/F_C_6122_1.jpg";
 import Test4 from "C:/medex-backend/db/imgs/F_C_11725_1.jpg";
 import IconButton from '@mui/material/IconButton';
 import ImageButtons from "./ImageButtons";
-
+import React, { useEffect } from "react";
+import { useCanvas } from "./CanvasContext";
 
 const options = ['origin', 'cardio', 'pleural', 'pneumo'];
 
+
+export function Canvas() {
+  const {
+    canvasRef,
+    prepareCanvas,
+    startDrawing,
+    finishDrawing,
+    draw,
+  } = useCanvas();
+
+  useEffect(() => {
+    prepareCanvas();
+  }, []);
+
+  return (
+    <canvas
+      onMouseDown={startDrawing}
+      onMouseUp={finishDrawing}
+      onMouseMove={draw}
+      ref={canvasRef}
+    />
+  );
+}
+
+// import React, {Component} from "react";
+// import CanvasDraw from "react-canvas-draw";
+// import Test from "./test.jpg";
+// import IconButton from '@mui/material/IconButton';
 
 class Canvas extends Component{
     constructor(props){
@@ -67,4 +96,4 @@ class Canvas extends Component{
     }
 }
 
-export default Canvas;
+// export default Canvas;

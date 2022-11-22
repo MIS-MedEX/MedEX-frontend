@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState, useRef }  from 'react';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +12,9 @@ import AutoFixNormalIcon from '@mui/icons-material/AutoFixNormal';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import {ClearCanvasButton} from './ClearButton';
+import { CanvasProvider } from "../components/CanvasContext"
+
 
 
 const darkTheme = createTheme({
@@ -60,10 +63,14 @@ export default function ToolBar(props) {
           <IconButton>
             <AutoFixNormalIcon onClick={props.ClickErase}/>
           </IconButton>
-          {/* <IconButton>
-            <ZoomInIcon/>
-          </IconButton>
           <IconButton>
+            {/* <React.StrictMode>
+              <CanvasProvider>
+                <ClearCanvasButton/>
+              </CanvasProvider>
+            </React.StrictMode> */}
+          </IconButton>
+          {/* <IconButton>
             <ZoomOutIcon/>
           </IconButton>
           <IconButton>

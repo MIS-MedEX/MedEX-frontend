@@ -10,8 +10,11 @@ import DataList from '../components/NestedList_Data';
 import ToolBar from '../components/ToolBar';
 import ReportAIResult from '../components/ReportAIResult';
 import ImageCard from '../components/ImageCard';
-import Canvas from '../components/Canvas';
+import {Canvas} from '../components/Canvas';
 import { SettingsOverscanRounded } from '@material-ui/icons';
+import { CanvasProvider } from "../components/CanvasContext";
+import {ClearCanvasButton, ZoomInButton} from '../components/ClearButton';
+
 
 export default function PersonalPage() {
     const [open, setOpen] = React.useState(true);
@@ -74,7 +77,13 @@ export default function PersonalPage() {
                 <ToolBar ClickOpen={handleClick} color={color} ClickErase={handleErase}/>
                 <Grid container>
                   <Grid item xs={9}>
-                    <Canvas open={open} erase={erase}/>
+                  <React.StrictMode>
+                    <CanvasProvider>
+                      <ClearCanvasButton />
+                      <ZoomInButton />
+                      <Canvas />
+                    </CanvasProvider>
+                  </React.StrictMode>
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>
