@@ -18,7 +18,7 @@ export default function PatientsList() {
 	const [selectedID, setSelectedID] = React.useState([]);
 
 	React.useEffect(() => {
-		axios.get('http://140.114.77.34:5000/api/patient')
+		axios.get('http://127.0.0.1:5000/api/patient')
 			.then(res => {
 				setRow(res.data)
 			})
@@ -51,7 +51,7 @@ export default function PatientsList() {
 					endIcon={<SendIcon />}
 					href="/personal"
 					onClick={() => {
-						axios.get('http://140.114.77.34:5000/api/patient/' + selectedID)
+						axios.get('http://127.0.0.1:5000/api/patient/' + selectedID)
 							.then(res => {
 								localStorage.setItem('patient', JSON.stringify(res.data))
 							})

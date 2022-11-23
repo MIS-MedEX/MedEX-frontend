@@ -31,16 +31,16 @@ export default function ToolBar(props) {
   const [open, setOpen] = React.useState(true);
   const [disabled, setDisabled] = React.useState(false);
   const [color, setColor] = React.useState('inherit');
-  // useEffect(() => {
-  //   const items = JSON.parse(localStorage.getItem('patient'));
-  //   console.log(items);
-  //   setName(items.name);
-  //   setAge(items.age);
-  //   setSex(items.sex)
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('patient'));
+    console.log(items);
+    setName(items.name);
+    setAge(items.age);
+    setSex(items.sex)
 
-  //   // console.log(item.sex);
-  //   // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
-  // })
+    // console.log(item.sex);
+    // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
+  })
 
   const handleClick = () => {
     setColor(color === 'inherit' ? 'primary' : 'inherit');

@@ -15,7 +15,8 @@ export const CanvasProvider = ({ children }) => {
   const add_scale = 10;
   const MAX_ZOOM = 900;
   const MIN_ZOOM = 300;
-
+  const [current_imgPath, setCurrent_imgPath] = useState({})
+  const [currentImg, setCurrentImg] = useState('')
   // const isDragging = false;
   // var MAX_ZOOM = 5;
   // var MIN_ZOOM = 0.1;
@@ -25,9 +26,21 @@ export const CanvasProvider = ({ children }) => {
 
   
 
-  const prepareCanvas = () => {
+  const prepareCanvas = (imgPaths) => {
+
     const canvas = canvasRef.current
-    img.src = Test;
+
+    if (Object.keys(imgPaths).length === 0)
+      console.log("Empty")
+    else
+    {
+      // img.src = Test;
+      var _tmpsrc = imgPaths['origin']
+      img.src = require('../../../src/' + _tmpsrc)
+      setCurrent_imgPath(imgPaths)
+      setCurrentImg(_tmpsrc)
+    }
+    // console.log(imgPaths)
     canvas.width = window.innerWidth*2;
     canvas.height = window.innerHeight*2;
     canvas.style.width = `${window.innerWidth}px`;
@@ -82,7 +95,7 @@ export const CanvasProvider = ({ children }) => {
         context.drawImage(img, x_loc, y_loc, size, size);
         
     } 
-    img.src = Test;
+    img.src = require('../../../src/' + currentImg);
   }
 
   const zoomIn = () => {
@@ -101,7 +114,7 @@ export const CanvasProvider = ({ children }) => {
       setSize(prev=>prev+add_scale*2);
       console.log(size);
     } 
-    img.src = Test;
+    img.src = require('../../../src/' + currentImg);
     console.log("zoom in");
     
   }
@@ -121,8 +134,39 @@ export const CanvasProvider = ({ children }) => {
       setSize(prev=>prev-add_scale*2);
       console.log(size);
     } 
-    img.src = Test;
+    img.src = require('../../../src/' + currentImg);
     console.log("zoom out");
+    
+  }
+
+  const change_img_via_modebtn = (mode) => {
+    var _tmpsrc
+    if (Object.keys(current_imgPath).length === 0)
+      console.log("Empty")
+    else{
+      if(mode === 'origin')
+        _tmpsrc = current_imgPath['origin']
+      if(mode === 'cardio')
+        _tmpsrc = current_imgPath['cardio']
+      if(mode === 'pleural')
+        _tmpsrc = current_imgPath['pleural']
+      if(mode === 'pneumo')
+        _tmpsrc = current_imgPath['pneumo']
+      console.log(_tmpsrc)
+
+      
+      setCurrentImg(_tmpsrc)
+      img.src = require('../../../src/' + _tmpsrc)
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      context.fillStyle = "white";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+    
+      img.onload = function() {
+          context.drawImage(img, 250, 100, 500, 500);
+          
+      } 
+    }
     
   }
 
@@ -166,6 +210,7 @@ export const CanvasProvider = ({ children }) => {
         zoomIn,
         zoomOut,
         activateDraw,
+        change_img_via_modebtn,
       }}
     >
       {children}

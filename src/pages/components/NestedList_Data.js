@@ -5,42 +5,53 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import Divider from '@mui/material/Divider';
-
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-
 
 // icon
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
-import FolderSharedIcon from '@mui/icons-material/FolderShared';
-import TuneIcon from '@mui/icons-material/Tune';
 
-export default function NestedList_Data(){
-  const [open, setOpen] = useState(true);
-  const [open2, setOpen2] = useState(true);
-  const handleClick = () => { setOpen(!open); };
-  const handleClick2 = () => { setOpen2(!open2); };
+import axios from 'axios';
 
 
-  var dateDict = [];
+export default function NestedList_Data(props){
+
+  const [PID, setPID] = useState(1)
+  const [date, setDate] = useState([])
+  const [date_time, setDateTime] = useState({})
+  const [opens, setOpens] = useState({})
 
 
-  const [date, setDate] = useState([]);
-  // useEffect(() => {
-  //   const items = JSON.parse(localStorage.getItem('patient'));
-  //   setDate(items.date);
-  //   console.log(items.date);
 
-  //   // for(let i = 0; i < date.length ; i++)
-  //   // {
-  //   //   var _str = date[i].split(' ');
-      
-  //   //   console.log(_str);
-  //   // }
+  useEffect(() => {
 
-  // }, [])
+    // console.log(props.number)
+
+
+    const content = JSON.parse(localStorage.getItem('patient'))
+    const patient_id = JSON.parse(localStorage.getItem('id'))
+
+    setPID(patient_id)
+
+
+    // get patient date data and parse to nestedlist format
+    const items = content.date;
+    var _date = Object.keys(items)
+    setDate([...date, ..._date])
+
+    var datas_key_len = Object.keys(items).length
+    var date_time_tmp = {}
+    var open_tmp = {}
+
+    for(var i = 0 ; i < datas_key_len ; i++)
+    {
+      date_time_tmp[_date[i]] = items[_date[i]]
+      open_tmp[_date[i]] = false
+    }
+
+    setDateTime({...date_time, ...date_time_tmp})
+    setOpens({...opens, ...open_tmp})
+
+  }, [])
 
   return(
     <List
@@ -52,67 +63,58 @@ export default function NestedList_Data(){
         </ListSubheader>
       }
     >
-      
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
-        <FolderSharedIcon />
-      </IconButton>
-
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search"
-      />
-
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="tune">
-        <TuneIcon />
-      </IconButton>
-
-      <Divider light />
-
-
-      <ListItemButton>
-        <ListItemIcon>
-          <ChevronRightIcon />
-        </ListItemIcon>
-        <ListItemText primary="2021-06-07" />
-      </ListItemButton>
-
-
-
-      <ListItemButton onClick={handleClick2}>
-        <ListItemIcon>
-          <ChevronRightIcon />
-        </ListItemIcon>
-        <ListItemText primary="2021-08-31" />
-      </ListItemButton>
-      <Collapse in={open2} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 11 }}>   
-            <ListItemText primary="CT-19:00:07" />
+      {
+        date?.map((item)=>
+        <div>
+          <ListItemButton onClick={()=> {var updateValue = {[item]: !opens[item]}; setOpens(tmp => ({...tmp, ...updateValue}));}}>
+            <ListItemIcon>
+              <ChevronRightIcon />
+            </ListItemIcon>
+            <ListItemText primary={item} />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 11 }}>   
-            <ListItemText primary="X-Ray-20:00:38" />
-          </ListItemButton>
-        </List>
-      </Collapse>
 
+          <Collapse in={opens[item]} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {
+              date_time[item]?.map((items)=>
+              <ListItemButton sx={{ pl: 11 }}>   
+                <ListItemText primary={items} 
+                              onClick={()=>
+                                axios.get('http://127.0.0.1:5000/api/patient/' + PID + '/image?date=' + [item] + '&type=' + [items])
+                                  .then(res => {
+                                    // const reg = /^.*[\\\/]/
+                                    const reg = 'C:/medex-backend/db/'
 
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <ChevronRightIcon />
-        </ListItemIcon>
-        <ListItemText primary="2021-09-02" />
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 11 }}>   
-            <ListItemText primary="CT-19:00:07" />
-            <CheckCircleTwoToneIcon/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 11 }}>   
-            <ListItemText primary="X-Ray-20:00:38" />
-          </ListItemButton>
-        </List>
-      </Collapse>
+                                    var origin_path = (res.data.img_org_path).replaceAll('\\', '/').replace(reg, '')
+
+                                    var cardio_path = (res.data.res_our_cardio.vis_path).replaceAll('\\', '/').replace(reg, '')
+                                    var pleural_path = (res.data.res_our_pleural.vis_path).replaceAll('\\', '/').replace(reg, '')
+                                    var pneumo_path = (res.data.res_our_pneumo.vis_path).replaceAll('\\', '/').replace(reg, '')
+                                  
+                                    console.log(origin_path)  // imgs/F_C_1576_2.jpg
+                                    console.log(cardio_path)
+                                    console.log(pleural_path)
+                                    console.log(pneumo_path)
+
+                                    props.imgOnChange(origin_path, cardio_path, pleural_path, pneumo_path)
+                                    
+                                    
+                                  })
+                                  .catch(err => {
+                                    console.log(err)
+                                  }
+                                )
+                              }/>
+                <CheckCircleTwoToneIcon/>
+              </ListItemButton>
+              )
+            }
+          </List>
+          </Collapse> 
+        </div>
+        
+        )
+      }
     </List>
   );
 }

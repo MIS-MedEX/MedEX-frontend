@@ -60,13 +60,13 @@ export default function TopBar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" color="inherit">
+            {/* <IconButton size="large" color="inherit">
 							<SettingsIcon />
-            </IconButton>
-            <IconButton size="large" color="inherit">
+            </IconButton> */}
+            <IconButton size="large" color="inherit" href="/">
 							<HomeIcon />
             </IconButton>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -76,7 +76,7 @@ export default function TopBar() {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
           </Box>
         </Toolbar>
       </AppBar>
