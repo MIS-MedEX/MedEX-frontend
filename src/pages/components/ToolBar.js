@@ -8,12 +8,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
 import CreateIcon from '@mui/icons-material/Create';
-import AutoFixNormalIcon from '@mui/icons-material/AutoFixNormal';
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import {ClearCanvasButton} from './ClearButton';
-import { CanvasProvider } from "../components/CanvasContext"
+import { CanvasProvider } from "../components/CanvasContext";
+import {ClearCanvasButton, ZoomInButton, ZoomOutButton, ActivateDrawongButton} from './ClearButton';
 
 
 
@@ -31,6 +28,9 @@ export default function ToolBar(props) {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
+  const [open, setOpen] = React.useState(true);
+  const [disabled, setDisabled] = React.useState(false);
+  const [color, setColor] = React.useState('inherit');
   // useEffect(() => {
   //   const items = JSON.parse(localStorage.getItem('patient'));
   //   console.log(items);
@@ -41,7 +41,10 @@ export default function ToolBar(props) {
   //   // console.log(item.sex);
   //   // const basic_information = item.name + " (" + item.age + "y/" + items.sex + ")";
   // })
-  
+
+  const handleClick = () => {
+    setColor(color === 'inherit' ? 'primary' : 'inherit');
+  };
 
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
@@ -57,25 +60,24 @@ export default function ToolBar(props) {
           {/* <IconButton>
             <PanToolAltIcon/>
           </IconButton> */}
-          <IconButton color={props.color}>
+          {/* <IconButton color={props.color}>
             <CreateIcon onClick={props.ClickOpen}/>
           </IconButton>
           <IconButton>
             <AutoFixNormalIcon onClick={props.ClickErase}/>
-          </IconButton>
-          <IconButton>
-            {/* <React.StrictMode>
-              <CanvasProvider>
-                <ClearCanvasButton/>
-              </CanvasProvider>
-            </React.StrictMode> */}
-          </IconButton>
-          {/* <IconButton>
-            <ZoomOutIcon/>
-          </IconButton>
-          <IconButton>
-            <LightModeIcon/>
           </IconButton> */}
+          <IconButton onClick={handleClick} color={color}>
+            <ActivateDrawongButton />
+          </IconButton>
+          <IconButton>
+            <ClearCanvasButton/>
+          </IconButton>
+          <IconButton>
+            <ZoomInButton />
+          </IconButton>
+          <IconButton>
+            <ZoomOutButton />
+          </IconButton>
         </Toolbar>
         </AppBar>
       </ThemeProvider>

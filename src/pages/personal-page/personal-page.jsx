@@ -13,22 +13,16 @@ import ImageCard from '../components/ImageCard';
 import {Canvas} from '../components/Canvas';
 import { SettingsOverscanRounded } from '@material-ui/icons';
 import { CanvasProvider } from "../components/CanvasContext";
-import {ClearCanvasButton, ZoomInButton} from '../components/ClearButton';
+import {ClearCanvasButton, ZoomInButton, ZoomOutButton} from '../components/ClearButton';
 
 
 export default function PersonalPage() {
-    const [open, setOpen] = React.useState(true);
-    const [disabled, setDisabled] = React.useState(false);
-    const [color, setColor] = React.useState('inherit');
+    
     const [erase, setErase] = React.useState(0);
     const [response, setResponse] = React.useState([]);
 
   
-    const handleClick = () => {
-      setOpen(!open);
-      setDisabled(!disabled);
-      setColor(color === 'inherit' ? 'primary' : 'inherit');
-    };
+    
 
     const handleErase = ()  => { 
       setErase(()=>erase+1);
@@ -73,23 +67,21 @@ export default function PersonalPage() {
                 <DataList/>
               </Grid>
               <Grid item xs={10}>
+                <React.StrictMode>
+                <CanvasProvider>
                 <Stack spacing={2}>
-                <ToolBar ClickOpen={handleClick} color={color} ClickErase={handleErase}/>
+                <ToolBar />
                 <Grid container>
                   <Grid item xs={9}>
-                  {/* <React.StrictMode>
-                    <CanvasProvider>
-                      <ClearCanvasButton />
-                      <ZoomInButton />
-                      <Canvas />
-                    </CanvasProvider>
-                  </React.StrictMode> */}
+                    <Canvas />
                   </Grid>
                   <Grid item xs={3}>
                     <ReportAIResult/>
                   </Grid>
                 </Grid>
                 </Stack>
+                </CanvasProvider>
+              </React.StrictMode>
               </Grid>
             </Grid>
           </Stack>
