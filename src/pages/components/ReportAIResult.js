@@ -71,7 +71,7 @@ export default function ReportAIResult() {
             component="div"
             sx={{ flexGrow: 1, textAlign: "right" }}
           >
-            {/* Ground Truth: {res.img_label} */}
+            Ground Truth: {res.img_label}
           </Typography>
         </Box>
       </TabPanel>

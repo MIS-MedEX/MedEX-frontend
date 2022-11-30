@@ -9,6 +9,7 @@ import {
   Legend,
   Label,
   Cell,
+  ResponsiveContainer,
 } from "recharts";
 
 function parseResponse(response) {
@@ -38,6 +39,8 @@ export default function MoreResult() {
   let data = parseResponse(res);
 
   return (
+    <div style={{ width: '100%', height: 400 }}>
+    <ResponsiveContainer>
     <BarChart
       width={450}
       height={400}
@@ -81,5 +84,7 @@ export default function MoreResult() {
         ))}
       </Bar>
     </BarChart>
+    </ResponsiveContainer>
+    </div>
   );
 }

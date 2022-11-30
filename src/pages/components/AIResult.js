@@ -7,7 +7,9 @@ import {
   CartesianGrid,
   Tooltip,
   Label,
+  ResponsiveContainer,
 } from "recharts";
+import {useMediaQuery} from 'react-responsive';
 
 function parseResponse(response) {
   let data = [];
@@ -36,6 +38,8 @@ export default function AIResult() {
   let data = parseResponse(res);
 
   return (
+    <div style={{ width: '100%', height: 400 }}>
+    <ResponsiveContainer>
     <BarChart
       width={450}
       height={400}
@@ -62,5 +66,7 @@ export default function AIResult() {
         label={{ fontSize: 15, position: "top", fill: "#8884d8" }}
       />
     </BarChart>
+    </ResponsiveContainer>
+    </div>
   );
 }

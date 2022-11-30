@@ -58,7 +58,8 @@ export default function Report() {
 
   if (highlight[0] === "") {
     return (
-      <Stack spacing={2} sx={{ width: "100%", height: "100%" }}>
+      <div style={{ width: '100%', height: 400 }}>
+      <Stack spacing={2} sx={{ width: "100%" }}>
         <div className="highlight_area">
           <HighlightWithinTextarea
             value={report}
@@ -74,10 +75,12 @@ export default function Report() {
           Submit
         </Button>
       </Stack>
+      </div>
     );
   } else {
     return (
-      <Stack spacing={2} sx={{ width: "100%", height: "100%" }}>
+      <div style={{ width: '100%', height: 400 }}>
+      <Stack spacing={2} sx={{ width: "100%" }}>
         <div className="highlight_area">
           <HighlightWithinTextarea
             value={report}
@@ -94,6 +97,7 @@ export default function Report() {
           Submit
         </Button>
       </Stack>
+      </div>
     );
   }
 

@@ -142,9 +142,9 @@ export const CanvasProvider = ({ children }) => {
     if (mode === "cardio") _tmpsrc = _tmpsrc + data.res_our_cardio.vis_base64;
     if (mode === "pleural") _tmpsrc = _tmpsrc + data.res_our_pleural.vis_base64;
     if (mode === "pneumo") _tmpsrc = _tmpsrc + data.res_our_pneumo.vis_base64;
-
     setCurrentImg(_tmpsrc);
     img.src = _tmpsrc;
+
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     context.fillStyle = "white";
@@ -156,6 +156,7 @@ export const CanvasProvider = ({ children }) => {
   };
 
   return (
+    
     <CanvasContext.Provider
       value={{
         canvasRef,
@@ -173,6 +174,7 @@ export const CanvasProvider = ({ children }) => {
     >
       {children}
     </CanvasContext.Provider>
+   
   );
 };
 
