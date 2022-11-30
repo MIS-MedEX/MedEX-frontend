@@ -31,7 +31,7 @@ export default function Personal_Page() {
 
   return (
     <React.Fragment>
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%"}}>
         <Stack spacing={2}>
           <TopBar />
           <Grid container>
@@ -44,8 +44,8 @@ export default function Personal_Page() {
                   <Stack spacing={2}>
                     <ToolBar />
                     <Grid container>
-                      <Grid item xs={8}>
-                        <ButtonGroup>
+                      <Grid item xs={6.75}>
+                        <ButtonGroup fullWidth={true} sx={{mb: 1}}>
                           <OriginButton
                             btnNums={btnNum}
                             btnOnChange={handleButtonNum}
@@ -65,7 +65,9 @@ export default function Personal_Page() {
                         </ButtonGroup>
                         <Canvas canvasOpen={canvasOpen} />
                       </Grid>
-                      <Grid item xs={4}>
+                      <Grid item xs={0.5}>
+                      </Grid>
+                      <Grid item xs={4.75}>
                         <ReportAIResult />
                       </Grid>
                     </Grid>

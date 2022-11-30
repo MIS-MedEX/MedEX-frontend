@@ -39,13 +39,13 @@ export default function MoreResult() {
 
   return (
     <BarChart
-      width={400}
+      width={450}
       height={400}
       data={data}
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 10,
+        left: 10,
         bottom: 20,
       }}
     >

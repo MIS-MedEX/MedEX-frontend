@@ -18,7 +18,7 @@ export default function PatientsList() {
 
   React.useEffect(() => {
     axios
-      .get("http://140.114.77.34:5000/api/patient")
+      .get("http://127.0.0.1:5000/api/patient")
       .then((res) => {
         setRow(res.data);
       })
@@ -52,7 +52,7 @@ export default function PatientsList() {
           href="/personal"
           onClick={() => {
             axios
-              .get("http://140.114.77.34:5000/api/patient/" + selectedID)
+              .get("http://127.0.0.1:5000/api/patient/" + selectedID)
               .then((res) => {
                 localStorage.setItem("patient", JSON.stringify(res.data));
               })

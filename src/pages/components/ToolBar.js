@@ -58,7 +58,7 @@ export default function ToolBar(props) {
             >
               {name} ({age}Y / {sex})
             </Typography>
-            <IconButton onClick={handleClick} color={color}>
+            {/* <IconButton onClick={handleClick} color={color}>
               <ActivateDrawongButton />
             </IconButton>
             <IconButton>
@@ -69,7 +69,7 @@ export default function ToolBar(props) {
             </IconButton>
             <IconButton>
               <ZoomOutButton />
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
       </ThemeProvider>

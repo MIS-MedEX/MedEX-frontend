@@ -6,8 +6,8 @@ export const CanvasProvider = ({ children }) => {
   const [activateDrawing, setActivateDrawing] = useState(false);
   const [isDrawing, setIsDrawing] = useState(false);
   const [size, setSize] = useState(500);
-  const [x_loc, setXloc] = useState(250);
-  const [y_loc, setYloc] = useState(100);
+  const [x_loc, setXloc] = useState(0);
+  const [y_loc, setYloc] = useState(0);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const img = new Image();
@@ -26,14 +26,16 @@ export const CanvasProvider = ({ children }) => {
       img.src = _tmpsrc;
       setCurrentImg(_tmpsrc);
     }
-    canvas.width = window.innerWidth * 2;
-    canvas.height = window.innerHeight * 2;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    canvas.width = 400;
+    canvas.height = 400;
+    // canvas.style.width = `100%`;
+    canvas.style.height = `100%`;
+    canvas.style.display = "block";
+    canvas.style.margin = "auto";
     const context = canvas.getContext("2d");
 
     img.onload = function () {
-      context.drawImage(img, 250, 100, 500, 500);
+      context.drawImage(img, 0, 0, 200, 200);
     };
 
     context.scale(2, 2);
@@ -76,7 +78,7 @@ export const CanvasProvider = ({ children }) => {
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
     img.onload = function () {
-      context.drawImage(img, x_loc, y_loc, size, size);
+      context.drawImage(img, 0, 0, 200, 200);
     };
     img.src = currentImg;
   };
@@ -149,7 +151,7 @@ export const CanvasProvider = ({ children }) => {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     img.onload = function () {
-      context.drawImage(img, 250, 100, 500, 500);
+      context.drawImage(img, 0, 0, 200, 200);
     };
   };
 

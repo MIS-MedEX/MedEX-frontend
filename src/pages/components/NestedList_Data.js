@@ -73,7 +73,7 @@ export default function NestedList_Data(props) {
                     onClick={() =>
                       axios
                         .get(
-                          "http://140.114.77.34:5000/api/patient/" +
+                          "http://127.0.0.1:5000/api/patient/" +
                             PID +
                             "/image?date=" +
                             [item] +
@@ -86,6 +86,8 @@ export default function NestedList_Data(props) {
                             "response",
                             JSON.stringify(res.data)
                           );
+                          localStorage.setItem("date", item)
+                          localStorage.setItem("type", items)
                         })
                         .catch((err) => {
                           console.log(err);
