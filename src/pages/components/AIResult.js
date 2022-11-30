@@ -9,7 +9,6 @@ import {
   Label,
   ResponsiveContainer,
 } from "recharts";
-import {useMediaQuery} from 'react-responsive';
 
 function parseResponse(response) {
   let data = [];
@@ -38,35 +37,35 @@ export default function AIResult() {
   let data = parseResponse(res);
 
   return (
-    <div style={{ width: '100%', height: 500 }}>
-    <ResponsiveContainer>
-    <BarChart
-      width={450}
-      height={400}
-      data={data}
-      margin={{
-        top: 5,
-        right: 10,
-        left: 10,
-        bottom: 20,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name">
-        <Label value="Type of Disease" offset={0} position="bottom" />
-      </XAxis>
-      <YAxis
-        label={{ value: "Probability", angle: -90, position: "insideLeft" }}
-      />
-      <Tooltip />
-      <Bar
-        barSize={50}
-        dataKey="probability"
-        fill="#8884d8"
-        label={{ fontSize: 15, position: "top", fill: "#8884d8" }}
-      />
-    </BarChart>
-    </ResponsiveContainer>
+    <div style={{ width: "100%", height: 500 }}>
+      <ResponsiveContainer>
+        <BarChart
+          width={450}
+          height={400}
+          data={data}
+          margin={{
+            top: 5,
+            right: 10,
+            left: 10,
+            bottom: 20,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name">
+            <Label value="Type of Disease" offset={0} position="bottom" />
+          </XAxis>
+          <YAxis
+            label={{ value: "Probability", angle: -90, position: "insideLeft" }}
+          />
+          <Tooltip />
+          <Bar
+            barSize={50}
+            dataKey="probability"
+            fill="#8884d8"
+            label={{ fontSize: 15, position: "top", fill: "#8884d8" }}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

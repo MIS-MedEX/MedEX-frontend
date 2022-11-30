@@ -5,12 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import {
-  ClearCanvasButton,
-  ZoomInButton,
-  ZoomOutButton,
-  ActivateDrawongButton,
-} from "./ClearButton";
 
 const darkTheme = createTheme({
   palette: {
@@ -25,7 +19,6 @@ export default function ToolBar(props) {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  const [color, setColor] = React.useState("inherit");
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("patient"));
@@ -34,10 +27,6 @@ export default function ToolBar(props) {
     setAge(items.age);
     setSex(items.sex);
   });
-
-  const handleClick = () => {
-    setColor(color === "inherit" ? "primary" : "inherit");
-  };
 
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
@@ -58,18 +47,6 @@ export default function ToolBar(props) {
             >
               {name} ({age}Y / {sex})
             </Typography>
-            {/* <IconButton onClick={handleClick} color={color}>
-              <ActivateDrawongButton />
-            </IconButton>
-            <IconButton>
-              <ClearCanvasButton />
-            </IconButton>
-            <IconButton>
-              <ZoomInButton />
-            </IconButton>
-            <IconButton>
-              <ZoomOutButton />
-            </IconButton> */}
           </Toolbar>
         </AppBar>
       </ThemeProvider>

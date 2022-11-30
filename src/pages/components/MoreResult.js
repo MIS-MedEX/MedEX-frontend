@@ -39,52 +39,54 @@ export default function MoreResult() {
   let data = parseResponse(res);
 
   return (
-    <div style={{ width: '100%', height: 500 }}>
-    <ResponsiveContainer>
-    <BarChart
-      width={450}
-      height={400}
-      data={data}
-      margin={{
-        top: 5,
-        right: 10,
-        left: 10,
-        bottom: 20,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name">
-        <Label value="Type of Disease" offset={0} position="bottom" />
-      </XAxis>
-      <YAxis label={{ value: "Error", angle: -90, position: "insideLeft" }} />
-      <Tooltip />
-      <Legend align="right" verticalAlign="top" />
-      <Bar
-        dataKey="ours"
-        fill="#8884d8"
-        label={{ fontSize: 15, position: "top" }}
-      >
-        {data.map((entry, index) => (
-          <Cell
-            key={`cell-${index}`}
-            fill={entry.name === res.img_label ? "#8884d8" : "#ededed"}
+    <div style={{ width: "100%", height: 500 }}>
+      <ResponsiveContainer>
+        <BarChart
+          width={450}
+          height={400}
+          data={data}
+          margin={{
+            top: 5,
+            right: 10,
+            left: 10,
+            bottom: 20,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name">
+            <Label value="Type of Disease" offset={0} position="bottom" />
+          </XAxis>
+          <YAxis
+            label={{ value: "Error", angle: -90, position: "insideLeft" }}
           />
-        ))}
-      </Bar>
-      <Bar
-        dataKey="baseline"
-        fill="#82ca9d"
-        label={{ fontSize: 15, position: "top" }}
-      >
-        {data.map((entry, index) => (
-          <Cell
-            key={`cell-${index}`}
-            fill={entry.name === res.img_label ? "#82ca9d" : "#ededed"}
-          />
-        ))}
-      </Bar>
-    </BarChart>
-    </ResponsiveContainer>
+          <Tooltip />
+          <Legend align="right" verticalAlign="top" />
+          <Bar
+            dataKey="ours"
+            fill="#8884d8"
+            label={{ fontSize: 15, position: "top" }}
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.name === res.img_label ? "#8884d8" : "#ededed"}
+              />
+            ))}
+          </Bar>
+          <Bar
+            dataKey="baseline"
+            fill="#82ca9d"
+            label={{ fontSize: 15, position: "top" }}
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.name === res.img_label ? "#82ca9d" : "#ededed"}
+              />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

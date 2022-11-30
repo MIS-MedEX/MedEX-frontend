@@ -28,7 +28,6 @@ export const CanvasProvider = ({ children }) => {
     }
     canvas.width = 400;
     canvas.height = 400;
-    // canvas.style.width = `100%`;
     canvas.style.height = `100%`;
     canvas.style.display = "block";
     canvas.style.margin = "auto";
@@ -156,7 +155,6 @@ export const CanvasProvider = ({ children }) => {
   };
 
   return (
-    
     <CanvasContext.Provider
       value={{
         canvasRef,
@@ -174,7 +172,6 @@ export const CanvasProvider = ({ children }) => {
     >
       {children}
     </CanvasContext.Provider>
-   
   );
 };
 

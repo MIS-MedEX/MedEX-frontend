@@ -86,8 +86,8 @@ export default function NestedList_Data(props) {
                             "response",
                             JSON.stringify(res.data)
                           );
-                          localStorage.setItem("date", item)
-                          localStorage.setItem("type", items)
+                          localStorage.setItem("date", item);
+                          localStorage.setItem("type", items);
                         })
                         .catch((err) => {
                           console.log(err);
