@@ -11,7 +11,7 @@ export function Canvas(props) {
 
   return (
     <React.Fragment>
-      <div style={{ width: '100%', height: 400 }}>
+      <div style={{ width: '100%', height: 500 }}>
       <canvas
         onMouseDown={startDrawing}
         onMouseUp={finishDrawing}

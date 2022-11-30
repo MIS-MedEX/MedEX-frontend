@@ -39,7 +39,7 @@ export default function MoreResult() {
   let data = parseResponse(res);
 
   return (
-    <div style={{ width: '100%', height: 400 }}>
+    <div style={{ width: '100%', height: 500 }}>
     <ResponsiveContainer>
     <BarChart
       width={450}
