@@ -44,16 +44,12 @@ export default function Report() {
         highlight: highlight,
       })
       .then((res) => {
-        setHighlight([])
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  console.log(highlight);
-  console.log(report)
 
   return (
     <div style={{ width: "100%", height: 400 }}>
