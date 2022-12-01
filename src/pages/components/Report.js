@@ -34,8 +34,6 @@ export default function Report() {
     }
   };
 
-  console.log(highlight);
-
   const handlePost = () => {
     axios
       .post("http://127.0.0.1:5000/api/patient/save_report", {
@@ -46,6 +44,7 @@ export default function Report() {
         highlight: highlight,
       })
       .then((res) => {
+        setHighlight([])
         console.log(res);
       })
       .catch((err) => {
@@ -54,46 +53,27 @@ export default function Report() {
   };
 
   console.log(highlight);
+  console.log(report)
 
-  if (highlight[0] === "") {
-    return (
-      <div style={{ width: "100%", height: 400 }}>
-        <Stack spacing={2} sx={{ width: "100%" }}>
-          <div className="highlight_area">
-            <HighlightWithinTextarea value={report} onChange={handleChange} />
-          </div>
-          <Button
-            className={classes.button}
-            variant="contained"
-            fullWidth={true}
-            onClick={handlePost}
-          >
-            Submit
-          </Button>
-        </Stack>
-      </div>
-    );
-  } else {
-    return (
-      <div style={{ width: "100%", height: 400 }}>
-        <Stack spacing={2} sx={{ width: "100%" }}>
-          <div className="highlight_area">
-            <HighlightWithinTextarea
-              value={report}
-              highlight={highlight}
-              onChange={handleChange}
-            />
-          </div>
-          <Button
-            className={classes.button}
-            variant="contained"
-            fullWidth={true}
-            onClick={handlePost}
-          >
-            Submit
-          </Button>
-        </Stack>
-      </div>
-    );
-  }
+  return (
+    <div style={{ width: "100%", height: 400 }}>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <div className="highlight_area">
+          <HighlightWithinTextarea
+            value={report}
+            highlight={highlight}
+            onChange={handleChange}
+          />
+        </div>
+        <Button
+          className={classes.button}
+          variant="contained"
+          fullWidth={true}
+          onClick={handlePost}
+        >
+          Submit
+        </Button>
+      </Stack>
+    </div>
+  );
 }

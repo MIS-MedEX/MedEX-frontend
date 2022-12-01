@@ -30,7 +30,7 @@ const drawerWidth = 300;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -76,6 +76,8 @@ export default function Personal_Page() {
   const [btnNum, setBtnNum] = useState(0);
   const [open, setOpen] = useState(false);
   const [canvasOpen, setCanvasOpen] = useState(0);
+  let res = JSON.parse(localStorage.getItem("response"));
+
 
   const handleImage = () => {
     setCanvasOpen(canvasOpen + 1);
@@ -93,6 +95,26 @@ export default function Personal_Page() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleReset = () => {
+    console.log("Reset")
+    let empty_more_res = {error: 0.0, prob: 0.0}
+    let empty_our_res = {error: 0.0, prob: 0.0, vis_base64: "", vis_path: ""}
+    let res = {
+      highlight: [],
+      img_label: "",
+      image_base64: "",
+      pred_label: "",
+      report: "",
+      res_baseline_cardio: empty_more_res,
+      res_baseline_pleural: empty_more_res,
+      res_baseline_pneumo: empty_more_res,
+      res_our_cardio: empty_our_res,
+      res_our_pleural: empty_our_res,
+      res_our_pneumo: empty_our_res,
+    }
+    localStorage.setItem("response", JSON.stringify(res))
+  }
 
   return (
     <React.Fragment>
@@ -118,7 +140,7 @@ export default function Personal_Page() {
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton size="large" color="inherit" href="/">
+              <IconButton size="large" color="inherit" href="/" onClick={handleReset}>
                 <HomeIcon />
               </IconButton>
             </Box>
@@ -155,6 +177,7 @@ export default function Personal_Page() {
               <Stack spacing={2}>
                 <ToolBar />
                 <Grid container>
+                  <Grid item md={0.25} />
                   <Grid item md={6.75}>
                     <ButtonGroup fullWidth={true} sx={{ mb: 1 }}>
                       <OriginButton
@@ -176,7 +199,7 @@ export default function Personal_Page() {
                     </ButtonGroup>
                     <Canvas canvasOpen={canvasOpen} />
                   </Grid>
-                  <Grid item md={0.5} />
+                  <Grid item md={0.25} />
                   <Grid item md={4.75}>
                     <ReportAIResult />
                   </Grid>

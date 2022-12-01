@@ -37,7 +37,7 @@ export default function AIResult() {
   let data = parseResponse(res);
 
   return (
-    <div style={{ width: "100%", height: 500 }}>
+    <div style={{ width: "100%", height: 400 }}>
       <ResponsiveContainer>
         <BarChart
           width={450}
